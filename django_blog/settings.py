@@ -126,3 +126,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#changing the default django login redirect to blog-home
+LOGIN_REDIRECT_URL='blog-home'
+LOGIN_URL='login'

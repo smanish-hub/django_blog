@@ -130,3 +130,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #changing the default django login redirect to blog-home
 LOGIN_REDIRECT_URL='blog-home'
 LOGIN_URL='login'
+
+#to set the image root path
+import os
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/'

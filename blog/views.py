@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from typing import Any
+from django.db.models.query import QuerySet
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 from .models import Post
 from django.views.generic import (
     ListView,
@@ -25,7 +28,19 @@ class PostListView(ListView):
     context_object_name='posts'    #this is used for passing the context in the template
 
     ordering='-date_posted'        #the '-' prefix before the column name by which ordering is to be done denotes DESC order 
+    paginate_by=3                  #it means only two object of Post will be displayed per page
 
+class UserPostListView(ListView):
+    model= Post
+    template_name='blog/user_blogs.html'
+    context_object_name='posts'    
+     
+    paginate_by=3 
+
+    #overwriting the classmethod get_queryset
+    def get_queryset(self):
+        user=get_object_or_404(User,username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 class PostDetailView(DetailView):
     model=Post

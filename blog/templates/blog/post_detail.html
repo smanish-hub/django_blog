@@ -4,7 +4,7 @@
       <img  class ="rounded-circle article-img" src="{{object.author.profile.image.url}}" alt="">
         <div class="media-body">
           <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.author }}</a>
+            <a class="mr-2" href="{%url 'user-posts' object.author.username%}">{{object.author.username }}</a>
             <small class="text-muted">{{ object.date_posted|date:"d F f:a"}}</small>
             <!-- here we are checking weather loggined user is same or not then only we will display the link to delete or update -->
             {%if object.author == user%}
